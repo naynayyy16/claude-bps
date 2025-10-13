@@ -306,32 +306,56 @@
             justify-content: center;
         }
 
-        /* Login Card Specific */
+        /* Login Card Specific - FIXED */
         .login-card {
-            max-width: 600px;
+            max-width: 480px;  /* ← DIPERKECIL dari 600px jadi 480px */
             margin: 0 auto;
         }
 
-        .login-card .btn-submit {
-            width: auto; 
-            min-width: 200px;  
-            margin-top: 10px;
-            padding: 13px 40px;  
-            font-size: 14px;
-        }
-
-        .login-card .button-group,
+        /* Wrapper untuk form agar lebih rapi */
         .login-card form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;  
+            width: 100%;
         }
 
+        /* Button Submit untuk Login */
+        .login-card .btn-submit {
+            width: 100%;  /* ← KEMBALI KE FULL WIDTH */
+            margin-top: 10px;
+            padding: 15px;
+            font-size: 15px;
+            background: linear-gradient(135deg, #002855 0%, #001a3d 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 40, 85, 0.3);
+        }
+
+        .login-card .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 40, 85, 0.4);
+        }
+
+        .login-card .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* Responsive untuk Login Card */
         @media (max-width: 768px) {
-            .btn-add,
-            .btn-submit {
-                width: 100%;  /* ← HAPUS BARIS INI */
-                justify-content: center;
+            .login-card {
+                max-width: 100%;
+                padding: 30px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 25px 20px;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-card .btn-submit {
+                width: 100%;
+                min-width: unset;
             }
 
             .content-section {
