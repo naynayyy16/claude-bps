@@ -518,6 +518,147 @@
                 padding: 20px;
             }
         }
+
+        /* Feedback Page Specific Styles */
+        .feedback-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .data-table.feedback-table {
+            min-width: 100%;
+        }
+
+        .data-table.feedback-table th:first-child,
+        .data-table.feedback-table td:first-child {
+            width: 40px;
+            text-align: center;
+        }
+
+        .data-table.feedback-table th:nth-child(2),
+        .data-table.feedback-table td:nth-child(2) {
+            width: 130px;
+            white-space: nowrap;
+        }
+
+        .data-table.feedback-table th:nth-child(3),
+        .data-table.feedback-table td:nth-child(3) {
+            width: 140px;
+        }
+
+        .data-table.feedback-table th:nth-child(4),
+        .data-table.feedback-table td:nth-child(4) {
+            width: 200px;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .data-table.feedback-table th:nth-child(5),
+        .data-table.feedback-table td:nth-child(5) {
+            width: 160px;
+        }
+
+        .data-table.feedback-table th:nth-child(6),
+        .data-table.feedback-table td:nth-child(6) {
+            width: auto;
+            min-width: 250px;
+        }
+
+        .data-table.feedback-table th:nth-child(7),
+        .data-table.feedback-table td:nth-child(7) {
+            width: 120px;
+            text-align: center;
+        }
+
+        .data-table.feedback-table th:nth-child(8),
+        .data-table.feedback-table td:nth-child(8) {
+            width: 280px;
+            text-align: center;
+        }
+
+        .feedback-text-truncate {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .feedback-actions {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .feedback-actions .btn {
+            padding: 6px 12px;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .feedback-header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .feedback-filter {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            background: white;
+            cursor: pointer;
+        }
+
+        .feedback-filter:focus {
+            outline: none;
+            border-color: #003D7A;
+        }
+
+        /* Responsive adjustments for feedback */
+        @media (max-width: 1400px) {
+            .data-table.feedback-table th:nth-child(6),
+            .data-table.feedback-table td:nth-child(6) {
+                min-width: 200px;
+            }
+            
+            .data-table.feedback-table th:nth-child(8),
+            .data-table.feedback-table td:nth-child(8) {
+                width: 240px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .feedback-actions {
+                flex-direction: column;
+            }
+            
+            .feedback-actions .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .feedback-header-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .feedback-filter {
+                width: 100%;
+            }
+            
+            .data-table.feedback-table {
+                font-size: 12px;
+            }
+            
+            .data-table.feedback-table th,
+            .data-table.feedback-table td {
+                padding: 10px 8px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -840,7 +981,7 @@
 
                 <!-- Feedback Page -->
                 <div id="feedbackPage" class="page-section">
-                    <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-bottom: 30px;">
                         <div class="stat-card">
                             <div class="icon icon-blue">
                                 <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
@@ -865,18 +1006,18 @@
                                 <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"/>
                                 </svg>
-                            </h3>
+                            </div>
                             <h3>Belum Dibaca</h3>
                             <div class="value">38</div>
                         </div>
                     </div>
 
                     <div class="content-card">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px;">
                             <h3 style="margin: 0; padding: 0; border: none;">Daftar Feedback Masuk</h3>
-                            <div style="display: flex; gap: 10px;">
-                                <select class="btn btn-secondary" style="padding: 8px 15px;" onchange="filterFeedback(this.value)">
-                                    <option value="all">Semua</option>
+                            <div class="feedback-header-actions">
+                                <select class="feedback-filter" onchange="filterFeedback(this.value)">
+                                    <option value="all">Semua Status</option>
                                     <option value="unread">Belum Dibaca</option>
                                     <option value="read">Sudah Dibaca</option>
                                 </select>
@@ -888,94 +1029,105 @@
                                 </button>
                             </div>
                         </div>
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 40px;">
-                                        <input type="checkbox" onchange="toggleAllFeedback(this.checked)">
-                                    </th>
-                                    <th>Waktu</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
-                                    <th>Instansi</th>
-                                    <th>Pengalaman</th>
-                                    <th>Status</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody id="feedbackTableBody">
-                                <tr data-id="1" class="unread">
-                                    <td><input type="checkbox" class="feedback-checkbox"></td>
-                                    <td>13 Okt 2025, 15:45</td>
-                                    <td>Budi Santoso</td>
-                                    <td>budi.santoso@email.com</td>
-                                    <td>Universitas Nusa Cendana</td>
-                                    <td>
-                                        <div style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                                            Website sangat informatif dan mudah digunakan. Data yang disajikan sangat membantu untuk penelitian saya.
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-warning">Belum Dibaca</span></td>
-                                    <td>
-                                        <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 13px;" onclick="viewFeedback(1)">Detail</button>
-                                        <button class="btn btn-success" style="padding: 6px 12px; font-size: 13px;" onclick="markAsRead(1)">Tandai Dibaca</button>
-                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 13px;" onclick="deleteFeedback(1)">Hapus</button>
-                                    </td>
-                                </tr>
-                                <tr data-id="2" class="read">
-                                    <td><input type="checkbox" class="feedback-checkbox"></td>
-                                    <td>13 Okt 2025, 14:20</td>
-                                    <td>Maria Goreti</td>
-                                    <td>maria.goreti@instansi.go.id</td>
-                                    <td>Dinas Statistik Kota Kupang</td>
-                                    <td>
-                                        <div style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                                            Visualisasi data sangat menarik dan interaktif. Mohon ditambahkan fitur download untuk semua grafik.
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-success">Sudah Dibaca</span></td>
-                                    <td>
-                                        <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 13px;" onclick="viewFeedback(2)">Detail</button>
-                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 13px;" onclick="deleteFeedback(2)">Hapus</button>
-                                    </td>
-                                </tr>
-                                <tr data-id="3" class="unread">
-                                    <td><input type="checkbox" class="feedback-checkbox"></td>
-                                    <td>13 Okt 2025, 10:15</td>
-                                    <td>Ahmad Hidayat</td>
-                                    <td>ahmad.hidayat@gmail.com</td>
-                                    <td>Konsultan Independen</td>
-                                    <td>
-                                        <div style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                                            Sangat terbantu dengan adanya metadata lengkap. Saran: tambahkan fitur perbandingan antar wilayah.
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-warning">Belum Dibaca</span></td>
-                                    <td>
-                                        <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 13px;" onclick="viewFeedback(3)">Detail</button>
-                                        <button class="btn btn-success" style="padding: 6px 12px; font-size: 13px;" onclick="markAsRead(3)">Tandai Dibaca</button>
-                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 13px;" onclick="deleteFeedback(3)">Hapus</button>
-                                    </td>
-                                </tr>
-                                <tr data-id="4" class="read">
-                                    <td><input type="checkbox" class="feedback-checkbox"></td>
-                                    <td>12 Okt 2025, 16:30</td>
-                                    <td>Siti Aminah</td>
-                                    <td>siti.aminah@perusahaan.co.id</td>
-                                    <td>PT. Analitika Data</td>
-                                    <td>
-                                        <div style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                                            Interface sangat user-friendly. Namun perlu peningkatan kecepatan loading untuk dataset besar.
-                                        </div>
-                                    </td>
-                                    <td><span class="badge badge-success">Sudah Dibaca</span></td>
-                                    <td>
-                                        <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 13px;" onclick="viewFeedback(4)">Detail</button>
-                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 13px;" onclick="deleteFeedback(4)">Hapus</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        
+                        <div class="feedback-table-wrapper">
+                            <table class="data-table feedback-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" onchange="toggleAllFeedback(this.checked)">
+                                        </th>
+                                        <th>Waktu</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>Instansi</th>
+                                        <th>Pengalaman</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="feedbackTableBody">
+                                    <tr data-id="1" class="unread">
+                                        <td><input type="checkbox" class="feedback-checkbox"></td>
+                                        <td>13 Okt 2025, 15:45</td>
+                                        <td>Budi Santoso</td>
+                                        <td><div class="feedback-text-truncate" title="budi.santoso@email.com">budi.santoso@email.com</div></td>
+                                        <td>Universitas Nusa Cendana</td>
+                                        <td>
+                                            <div class="feedback-text-truncate" title="Website sangat informatif dan mudah digunakan. Data yang disajikan sangat membantu untuk penelitian saya.">
+                                                Website sangat informatif dan mudah digunakan. Data yang disajikan sangat membantu untuk penelitian saya.
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-warning">Belum Dibaca</span></td>
+                                        <td>
+                                            <div class="feedback-actions">
+                                                <button class="btn btn-secondary" onclick="viewFeedback(1)">Detail</button>
+                                                <button class="btn btn-success" onclick="markAsRead(1)">Tandai Dibaca</button>
+                                                <button class="btn btn-danger" onclick="deleteFeedback(1)">Hapus</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-id="2" class="read">
+                                        <td><input type="checkbox" class="feedback-checkbox"></td>
+                                        <td>13 Okt 2025, 14:20</td>
+                                        <td>Maria Goreti</td>
+                                        <td><div class="feedback-text-truncate" title="maria.goreti@instansi.go.id">maria.goreti@instansi.go.id</div></td>
+                                        <td>Dinas Statistik Kota Kupang</td>
+                                        <td>
+                                            <div class="feedback-text-truncate" title="Visualisasi data sangat menarik dan interaktif. Mohon ditambahkan fitur download untuk semua grafik.">
+                                                Visualisasi data sangat menarik dan interaktif. Mohon ditambahkan fitur download untuk semua grafik.
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-success">Sudah Dibaca</span></td>
+                                        <td>
+                                            <div class="feedback-actions">
+                                                <button class="btn btn-secondary" onclick="viewFeedback(2)">Detail</button>
+                                                <button class="btn btn-danger" onclick="deleteFeedback(2)">Hapus</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-id="3" class="unread">
+                                        <td><input type="checkbox" class="feedback-checkbox"></td>
+                                        <td>13 Okt 2025, 10:15</td>
+                                        <td>Ahmad Hidayat</td>
+                                        <td><div class="feedback-text-truncate" title="ahmad.hidayat@gmail.com">ahmad.hidayat@gmail.com</div></td>
+                                        <td>Konsultan Independen</td>
+                                        <td>
+                                            <div class="feedback-text-truncate" title="Sangat terbantu dengan adanya metadata lengkap. Saran: tambahkan fitur perbandingan antar wilayah.">
+                                                Sangat terbantu dengan adanya metadata lengkap. Saran: tambahkan fitur perbandingan antar wilayah.
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-warning">Belum Dibaca</span></td>
+                                        <td>
+                                            <div class="feedback-actions">
+                                                <button class="btn btn-secondary" onclick="viewFeedback(3)">Detail</button>
+                                                <button class="btn btn-success" onclick="markAsRead(3)">Tandai Dibaca</button>
+                                                <button class="btn btn-danger" onclick="deleteFeedback(3)">Hapus</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-id="4" class="read">
+                                        <td><input type="checkbox" class="feedback-checkbox"></td>
+                                        <td>12 Okt 2025, 16:30</td>
+                                        <td>Siti Aminah</td>
+                                        <td><div class="feedback-text-truncate" title="siti.aminah@perusahaan.co.id">siti.aminah@perusahaan.co.id</div></td>
+                                        <td>PT. Analitika Data</td>
+                                        <td>
+                                            <div class="feedback-text-truncate" title="Interface sangat user-friendly. Namun perlu peningkatan kecepatan loading untuk dataset besar.">
+                                                Interface sangat user-friendly. Namun perlu peningkatan kecepatan loading untuk dataset besar.
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-success">Sudah Dibaca</span></td>
+                                        <td>
+                                            <div class="feedback-actions">
+                                                <button class="btn btn-secondary" onclick="viewFeedback(4)">Detail</button>
+                                                <button class="btn btn-danger" onclick="deleteFeedback(4)">Hapus</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
