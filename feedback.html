@@ -157,7 +157,7 @@
 
         .content-section {
             max-width: 900px;
-            margin: -50px auto 80px;
+            margin: 40px auto 80px;
             padding: 0 40px;
         }
 
@@ -275,24 +275,6 @@
             letter-spacing: 0.3px;
         }
 
-        .btn-add {
-            background: linear-gradient(135deg, #003D7A 0%, #002855 100%);
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(0, 40, 85, 0.2);
-        }
-
-        .btn-add:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 40, 85, 0.3);
-        }
-
-        .btn-add:active {
-            transform: translateY(0);
-        }
-
         .btn-submit {
             background: linear-gradient(135deg, #6B7B8C 0%, #5A6A7B 100%);
             color: white;
@@ -331,7 +313,7 @@
         @media (max-width: 768px) {
             .content-section {
                 padding: 0 20px;
-                margin: -40px auto 60px;
+                margin: 40px auto 60px;
             }
 
             .feedback-card,
@@ -348,7 +330,6 @@
                 flex-direction: column;
             }
 
-            .btn-add,
             .btn-submit {
                 width: 100%;
                 justify-content: center;
@@ -542,13 +523,7 @@
                     <textarea id="pengalaman" required></textarea>
                 </div>
 
-                <div class="button-group">
-                    <button type="button" class="btn btn-add">
-                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/>
-                        </svg>
-                        Tambah Topik
-                    </button>
+                <div class="button-group">\
                     <button type="submit" class="btn btn-submit">Kirim</button>
                 </div>
             </form>
