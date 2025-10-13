@@ -143,65 +143,221 @@
             margin-top: 30px;
         }
 
+        /* =========================
+   CONTENT SECTION - IMPROVED
+   ========================= */
+
         .content-section {
-            max-width: 600px;
-            margin: -40px auto 100px;
+            max-width: 900px;
+            margin: -50px auto 80px;
             padding: 0 40px;
         }
 
+        /* Card Styling - Unified Design */
+        .feedback-card,
         .login-card {
             background: white;
-            border: 3px solid #4FC3F7;
-            border-radius: 16px;
-            padding: 50px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 45px 50px;
+            box-shadow: 0 20px 60px rgba(0, 40, 85, 0.15);
+            position: relative;
+            overflow: hidden;
         }
 
+        .feedback-card::before,
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4FC3F7 0%, #003D7A 100%);
+        }
+
+        /* Form Title (Optional - bisa ditambahkan) */
+        .form-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #002855;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Form Group Styling */
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 24px;
         }
 
         .form-group label {
             display: block;
-            color: #333;
-            font-size: 15px;
+            color: #002855;
+            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
         }
 
-        .form-group input {
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            padding: 15px;
-            border: none;
-            background: #D9D9D9;
-            border-radius: 8px;
+            padding: 14px 18px;
+            border: 2px solid #E8EEF3;
+            background: #F8FAFB;
+            border-radius: 10px;
             font-size: 14px;
             font-family: 'Inter', sans-serif;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            color: #333;
         }
 
-        .form-group input:focus {
+        .form-group input:focus,
+        .form-group textarea:focus {
             outline: none;
-            background: #C9C9C9;
+            border-color: #4FC3F7;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(79, 195, 247, 0.1);
         }
 
-        .btn-submit {
-            width: 100%;
-            padding: 15px;
-            background: #6B7B8C;
-            color: white;
-            border: none;
-            border-radius: 8px;
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #A0AEC0;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+
+        /* Info Card Styling */
+        .info-card {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8F4 100%);
+            border: 2px solid #4CAF50;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 25px;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.1);
+        }
+
+        .info-card strong {
+            color: #2E7D32;
             font-size: 16px;
+        }
+
+        /* Button Group */
+        .button-group {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        /* Button Styling - Improved */
+        .btn {
+            padding: 13px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             font-family: 'Inter', sans-serif;
-            transition: background 0.3s;
-            margin-top: 10px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-add {
+            background: linear-gradient(135deg, #003D7A 0%, #002855 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 40, 85, 0.2);
+        }
+
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 40, 85, 0.3);
+        }
+
+        .btn-add:active {
+            transform: translateY(0);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #6B7B8C 0%, #5A6A7B 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(107, 123, 140, 0.25);
         }
 
         .btn-submit:hover {
-            background: #5A6A7B;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(107, 123, 140, 0.35);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* Full Width Button for Login */
+        .btn-submit.full-width {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Login Card Specific */
+        .login-card {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .login-card .btn-submit {
+            width: 100%;
+            margin-top: 10px;
+            padding: 15px;
+            font-size: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 0 20px;
+                margin: -40px auto 60px;
+            }
+
+            .feedback-card,
+            .login-card {
+                padding: 30px 25px;
+                border-radius: 16px;
+            }
+
+            .form-title {
+                font-size: 20px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn-add,
+            .btn-submit {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .feedback-card,
+            .login-card {
+                padding: 25px 20px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 12px 16px;
+                font-size: 13px;
+            }
         }
 
         @media (max-width: 768px) {
