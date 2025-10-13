@@ -41,9 +41,24 @@
         .logo {
             width: 50px;
             height: 50px;
-            background: white;
             border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 50px;
         }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .logo img[src=""] { display: none; }
+        .logo img:not([src=""]) + .logo-placeholder { display: none; }
 
         .header-text h1 {
             color: white;
@@ -70,6 +85,7 @@
             font-size: 14px;
             font-weight: 500;
             transition: color 0.3s;
+            position: relative;
         }
 
         .nav-menu a:hover {
@@ -78,6 +94,16 @@
 
         .nav-menu a.active {
             color: #FF9800;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #FF9800;
         }
 
         .hero-section {
@@ -108,6 +134,19 @@
             font-size: 42px;
             font-weight: 700;
             margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .hero-section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 100%;
+            height: 3px;
+            background: #4FC3F7;
         }
 
         .hero-section p {
@@ -127,6 +166,15 @@
             border-radius: 16px;
             padding: 50px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card {
+            background: white;
+            border: 3px solid #4FC3F7;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            margin-top: 20px;
         }
 
         .form-group {
@@ -228,9 +276,23 @@
         .footer-logo-img {
             width: 60px;
             height: 60px;
-            background: white;
+   
             border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
+        .footer-logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .footer-logo-img img[src=""] { display: none; }
 
         .footer h3 {
             font-size: 18px;
@@ -313,7 +375,9 @@
 <body>
     <header class="header">
         <div class="header-left">
-            <div class="logo"></div>
+            <div class="logo">
+                <img id="bpsHeaderLogo" src="logo bps.png" alt="Logo BPS" />
+            </div>
             <div class="header-text">
                 <h1>BADAN PUSAT STATISTIK</h1>
                 <p>PROVINSI NUSA TENGGARA TIMUR</p>
@@ -371,6 +435,7 @@
                     <button type="submit" class="btn btn-submit">Kirim</button>
                 </div>
             </form>
+            <div id="feedbackInfo" class="info-card" style="display:none;"></div>
         </div>
     </section>
 
@@ -378,7 +443,9 @@
         <div class="footer-content">
             <div>
                 <div class="footer-logo">
-                    <div class="footer-logo-img"></div>
+                    <div class="footer-logo-img">
+                        <img id="bpsFooterLogo" src="logo bps.png" alt="Logo BPS" />
+                    </div>
                     <h3>BADAN PUSAT STATISTIK</h3>
                 </div>
                 <p>Badan Pusat Statistik Provinsi Nusa Tenggara Timur<br>
@@ -415,9 +482,31 @@
     </footer>
 
     <script>
+        // Persist feedback to localStorage and show confirmation
         document.getElementById('feedbackForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Terima kasih! Feedback Anda telah berhasil dikirim.');
+            const email = document.getElementById('email').value.trim();
+            const nama = document.getElementById('nama').value.trim();
+            const instansi = document.getElementById('instansi').value.trim();
+            const pengalaman = document.getElementById('pengalaman').value.trim();
+
+            const entry = {
+                id: 'fb_' + Date.now(),
+                email,
+                nama,
+                instansi,
+                pengalaman,
+                tanggal: new Date().toISOString()
+            };
+
+            const existing = JSON.parse(localStorage.getItem('feedbackEntries') || '[]');
+            existing.push(entry);
+            localStorage.setItem('feedbackEntries', JSON.stringify(existing));
+
+            const info = document.getElementById('feedbackInfo');
+            info.style.display = 'block';
+            info.innerHTML = `<strong>Terima kasih, ${nama}!</strong><br/>Feedback Anda telah tersimpan.`;
+
             this.reset();
         });
     </script>

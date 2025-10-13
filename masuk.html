@@ -41,9 +41,23 @@
         .logo {
             width: 50px;
             height: 50px;
-            background: white;
             border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 50px;
         }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .logo img[src=""] { display: none; }
 
         .header-text h1 {
             color: white;
@@ -108,6 +122,19 @@
             font-size: 42px;
             font-weight: 700;
             margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .hero-section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+            width: 120px;
+            height: 3px;
+            background: #4FC3F7;
         }
 
         .hero-section p {
@@ -206,7 +233,9 @@
 <body>
     <header class="header">
         <div class="header-left">
-            <div class="logo"></div>
+            <div class="logo">
+                <img id="bpsHeaderLogo" src="logo bps.png" alt="Logo BPS" />
+            </div>
             <div class="header-text">
                 <h1>BADAN PUSAT STATISTIK</h1>
                 <p>PROVINSI NUSA TENGGARA TIMUR</p>
