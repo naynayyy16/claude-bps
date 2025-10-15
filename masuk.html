@@ -8,11 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -32,66 +28,34 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .logo { width: 50px; height: 50px; border-radius: 8px; }
+        .logo img { width: 100%; height: 100%; object-fit: contain; }
 
-        .logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex: 0 0 50px;
-        }
+        .header-text h1 { color: white; font-size: 16px; font-weight: 700; margin-bottom: 3px; }
+        .header-text p { color: #B0C4DE; font-size: 13px; font-weight: 400; }
 
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .logo img[src=""] { display: none; }
-
-        .header-text h1 {
-            color: white;
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 3px;
-        }
-
-        .header-text p {
-            color: #B0C4DE;
-            font-size: 13px;
-            font-weight: 400;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
+        .nav-menu { display: flex; gap: 30px; align-items: center; }
         .nav-menu a {
             color: white;
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
             transition: color 0.3s;
+            position: relative;
         }
-
-        .nav-menu a:hover {
-            color: #4FC3F7;
-        }
-
+        .nav-menu a:hover { color: #4FC3F7; }
         .nav-menu a.active {
             color: #FF9800;
+        }
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #FF9800;
         }
 
         .hero-section {
@@ -143,18 +107,12 @@
             margin-top: 30px;
         }
 
-        /* =========================
-   CONTENT SECTION - IMPROVED
-   ========================= */
-
         .content-section {
             max-width: 900px;
             margin: 40px auto 80px;
             padding: 0 40px;
         }
 
-        /* Card Styling - Unified Design */
-        .feedback-card,
         .login-card {
             background: white;
             border-radius: 20px;
@@ -162,9 +120,10 @@
             box-shadow: 0 20px 60px rgba(0, 40, 85, 0.15);
             position: relative;
             overflow: hidden;
+            max-width: 600px; /* ukuran sama seperti feedback */
+            margin: 0 auto;
         }
 
-        .feedback-card::before,
         .login-card::before {
             content: '';
             position: absolute;
@@ -175,31 +134,16 @@
             background: linear-gradient(90deg, #4FC3F7 0%, #003D7A 100%);
         }
 
-        /* Form Title (Optional - bisa ditambahkan) */
-        .form-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #002855;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        /* Form Group Styling */
-        .form-group {
-            margin-bottom: 24px;
-        }
-
+        .form-group { margin-bottom: 24px; }
         .form-group label {
             display: block;
             color: #002855;
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 8px;
-            letter-spacing: 0.3px;
         }
 
-        .form-group input,
-        .form-group textarea {
+        .form-group input {
             width: 100%;
             padding: 14px 18px;
             border: 2px solid #E8EEF3;
@@ -208,233 +152,49 @@
             font-size: 14px;
             font-family: 'Inter', sans-serif;
             transition: all 0.3s ease;
-            color: #333;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group input:focus {
             outline: none;
             border-color: #4FC3F7;
             background: white;
             box-shadow: 0 0 0 4px rgba(79, 195, 247, 0.1);
         }
 
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #A0AEC0;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-            line-height: 1.6;
-        }
-
-        /* Info Card Styling */
-        .info-card {
-            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8F4 100%);
-            border: 2px solid #4CAF50;
-            border-radius: 12px;
-            padding: 20px 24px;
-            margin-top: 25px;
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.1);
-        }
-
-        .info-card strong {
-            color: #2E7D32;
-            font-size: 16px;
-        }
-
-        /* Button Group */
-        .button-group {
-            display: flex;
-            gap: 12px;
-            justify-content: flex-end;
-            margin-top: 35px;
-            flex-wrap: wrap;
-        }
-
-        /* Button Styling - Improved */
-        .btn {
-            padding: 13px 28px;
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #002855 0%, #001a3d 100%);
+            color: white;
+            padding: 15px;
+            font-size: 15px;
             border: none;
             border-radius: 10px;
-            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 12px rgba(0, 40, 85, 0.3);
             transition: all 0.3s ease;
-            letter-spacing: 0.3px;
-        }
-
-        .btn-add {
-            background: linear-gradient(135deg, #003D7A 0%, #002855 100%);
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(0, 40, 85, 0.2);
-        }
-
-        .btn-add:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 40, 85, 0.3);
-        }
-
-        .btn-add:active {
-            transform: translateY(0);
-        }
-
-        .btn-submit {
-            background: linear-gradient(135deg, #6B7B8C 0%, #5A6A7B 100%);
-            color: white;
-            box-shadow: 0 4px 12px rgba(107, 123, 140, 0.25);
         }
 
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(107, 123, 140, 0.35);
+            box-shadow: 0 6px 16px rgba(0, 40, 85, 0.4);
         }
 
         .btn-submit:active {
             transform: translateY(0);
         }
 
-        /* Full Width Button for Login */
-        .btn-submit.full-width {
-            width: 100%;
-            justify-content: center;
-        }
-
-        /* Login Card Specific - FIXED */
-        .login-card {
-            max-width: 600px;  /* ← DIPERKECIL dari 600px jadi 480px */
-            margin: 0 auto;
-        }
-
-        /* Wrapper untuk form agar lebih rapi */
-        .login-card form {
-            width: 100%;
-        }
-
-        /* Button Submit untuk Login */
-        .login-card .btn-submit {
-            width: 100%;  
-            margin-top: 10px;
-            padding: 15px;
-            font-size: 15px;
-            background: linear-gradient(135deg, #002855 0%, #001a3d 100%);
-            color: white;
-            box-shadow: 0 4px 12px rgba(0, 40, 85, 0.3);
-            
-        }
-
-        .login-card .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 40, 85, 0.4);
-        }
-
-        .login-card .btn-submit:active {
-            transform: translateY(0);
-        }
-
-        /* Responsive untuk Login Card */
         @media (max-width: 768px) {
-            .login-card {
-                max-width: 100%;
-                padding: 30px 25px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .login-card {
-                padding: 25px 20px;
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .login-card .btn-submit {
-                width: 100%;
-                min-width: unset;
-            }
-
-            .content-section {
-                padding: 0 20px;
-                margin: 40px auto 60px;
-            }
-
-            .form-title {
-                font-size: 20px;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
-
-            .btn-add,
-            .btn-submit {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .feedback-card,
-            .login-card {
-                padding: 25px 20px;
-            }
-
-            .form-group input,
-            .form-group textarea {
-                padding: 12px 16px;
-                font-size: 13px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 15px 20px;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .nav-menu a.active::after {
-                content: '';
-                position: absolute;
-                bottom: -5px;
-                left: 0;
-                right: 0;
-                height: 2px;
-                background: #FF9800;
-            }   
-
-            .hero-section {
-                padding: 40px 20px;
-            }
-
-            .hero-section h2 {
-                font-size: 28px;
-            }
-
-            .content-section {
-                padding: 0 20px;
-            }
-
-            .login-card {
-                padding: 30px;
-            }
+            .content-section { padding: 0 20px; margin: 40px auto 60px; }
+            .login-card { padding: 30px 25px; border-radius: 16px; }
+            .hero-section h2 { font-size: 28px; }
         }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="header-left">
-            <div class="logo">
-                <img id="bpsHeaderLogo" src="logo bps.png" alt="Logo BPS" />
-            </div>
+            <div class="logo"><img src="logo bps.png" alt="Logo BPS"></div>
             <div class="header-text">
                 <h1>BADAN PUSAT STATISTIK</h1>
                 <p>PROVINSI NUSA TENGGARA TIMUR</p>
@@ -443,8 +203,8 @@
         <nav class="nav-menu">
             <a href="beranda.html">Beranda</a>
             <a href="feedback.html">Feedback</a>
-            <a href="https://sirusa.web.bps.go.id/metadata/?_gl=1*7px89*_ga*MTU1NzEyNDM1OS4xNzYwMzU1MDgx*_ga_XXTTVXWHDB*czE3NjAzNTUwODAkbzEkZzAkdDE3NjAzNTUwODAkajYwJGwwJGgw" target="_blank" rel="noopener noreferrer">Metadata</a>
-            <a href="https://ppid.bps.go.id/app/konten/5300/Profil-BPS.html?_gl=1*5jf1r*_ga*MTU1NzEyNDM1OS4xNzYwMzU1MDgx*_ga_XXTTVXWHDB*czE3NjAzNTUwODAkbzEkZzAkdDE3NjAzNTUwODAkajYwJGwwJGgw" target="_blank" rel="noopener noreferrer">Tentang Kami</a>
+            <a href="metadata.html">Metadata</a>
+            <a href="tentang.html">Tentang Kami</a>
             <a href="masuk.html" class="active">Masuk</a>
         </nav>
     </header>
@@ -480,9 +240,9 @@
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
             if (username === 'admin' && password === 'admin123') {
                 alert('Login berhasil! Mengarahkan ke dashboard admin...');
                 window.location.href = 'admin.html';
